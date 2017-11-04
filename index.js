@@ -1,3 +1,4 @@
+//This function is used to clear elements from array
 Array.prototype.clean = function(deleteValue) {
   for (var i = 0; i < this.length; i++) {
     if (this[i] == deleteValue) {         
@@ -7,13 +8,13 @@ Array.prototype.clean = function(deleteValue) {
   }
   return this;
 };
-
+//This function is used to check if every element in array is unique or not
 Array.prototype.unique = function(){
 	return this.filter(function(item, pos, self) {
 		return self.indexOf(item) == pos;
 	});
 };
-
+//This function is used to initialize AngularJS function(check line3 of html file)
 var app = angular.module("mainApp",[]);
 app.controller("DocumentController",["$scope",function ($scope) {
 
@@ -24,18 +25,18 @@ app.controller("DocumentController",["$scope",function ($scope) {
 	$scope.doc = Array( $scope.docnum );
 	$scope.matrix = [];
 	$scope.reserved = ['&','|','!'];
-	
+	//This function is used to create an array of input documnets
 	$scope.newArray =  function ( ) {
 		return new Array( $scope.docnum );
 	}	
-
+    //This function converts tokens to their binary value
 	$scope.dec2bin = function (dec){
 		var s = (dec >>> 0).toString(2);
 		var nar = new Array($scope.documentColumns.length-s.length +1);
 		s = nar.join('0') + s
 		return s;
 	}
-	
+	//This function is computing term incident matrix
 	$scope.apply = function(){
 	$scope.documentColumns = [];
 		// retrive tokens
@@ -71,7 +72,7 @@ app.controller("DocumentController",["$scope",function ($scope) {
 		// console.dir($scope.matrix)
 		$scope.compute ();
 	}
-
+  //This function evaluates queries
 	$scope.g = function( d ){
 		var elm = $scope.matrix[d];
 		if( elm ){
