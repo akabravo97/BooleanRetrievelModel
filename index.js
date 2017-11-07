@@ -48,6 +48,7 @@ app.controller("DocumentController",["$scope",function ($scope) {
 			{
 				$scope.documentColumns.push( $scope.doc[d].name );
 				str = $scope.doc[ d ].data.replace(/\W/g, ' ');
+				//Map function is used to apply the lowercase to all elements in array
 				$scope.doc[d].tokens = str.split(" ").clean("").map(function(r){
 				 								return r.toLowerCase()
 											});
@@ -84,6 +85,8 @@ app.controller("DocumentController",["$scope",function ($scope) {
 		return console.log(d);
 	}
 	$scope.compute = function(){
+		//we are replacing < and > passed with token with a '.And replacing ! with "~"(~ is recognized as NOT in intrepreter)
+		//we are using regexes.
 			var q = $scope.query.replace(/</g,"$scope.g('")
 								.replace(/>/g,"') ")
 								.replace(/!/g,"~").toLowerCase();
